@@ -3,24 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.9.1",
+    "@tailwindcss/aspect-ratio": "^0.2.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "autoprefixer": "^10.2.5",
+    "firebase": "^8.4.2",
+    "postcss-cli": "^8.3.1",
     "react-flip-move": "^3.0.4",
     "react-instagram-embed": "^1.5.0",
-    "react-scripts": "3.4.3"
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "tailwindcss": "^2.1.2"
   },
   "peerDependencies": {
     "react": ">=17.0.1",
     "react-dom": ">=17.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npm run watch:css && react-scripts start",
+    "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "yarn build && firebase deploy"
+    "deploy": "yarn build && firebase deploy",
+    "build:css": "postcss src/assets/style.css -o src/index.css",
+    "watch:css": "postcss src/assets/style.css -o src/index.css"
   },
   "eslintConfig": {
     "extends": "react-app"
