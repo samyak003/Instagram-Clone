@@ -75,7 +75,7 @@ function EditProfile() {
 	};
 	if (userDetails) {
 		return (
-			<div className="flex flex-col items-center my-5 p-10">
+			<div className="flex flex-col items-center my-5 p-10 dark:text-white">
 				{/* profile pic */}
 				<div className="grid place-items-center	">
 					<h2 className="font-medium text-xl">Change Profile Picture</h2>

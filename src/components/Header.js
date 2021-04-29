@@ -85,7 +85,13 @@ function Header() {
 	return (
 		<div>
 			<Modal open={open} onClose={() => setOpen(false)}>
-				<div className={classes.paper} style={modalStyle}>
+				<div
+					className={
+						classes.paper +
+						" dark:bg-black dark:border dark:border-gray-200 text-white"
+					}
+					style={modalStyle}
+				>
 					<center>
 						<form className="flex flex-col">
 							<h1>Instagram Clone</h1>
@@ -129,7 +135,13 @@ function Header() {
 				</div>
 			</Modal>
 			<Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
-				<div className={classes.paper} style={modalStyle}>
+				<div
+					className={
+						classes.paper +
+						" dark:bg-black dark:border dark:border-gray-200 text-white"
+					}
+					style={modalStyle}
+				>
 					<center>
 						<form className="flex flex-col">
 							<h1>Instagram Clone</h1>
@@ -156,33 +168,34 @@ function Header() {
 					</center>
 				</div>
 			</Modal>
-			<header className="bg-white sticky top-0 z-1 p-5 border-b-2 flex flex-col md:flex-row justify-between items-center object-contain">
-				<a href="/" className="font-bold text-2xl mb-4 md:mb-0">
+			<header className="bg-white sticky top-0 z-1 p-3 sm:p-5 border-b-2 flex flex-col md:flex-row justify-between items-center object-contain dark:bg-black dark:text-white">
+				<a href="/" className="font-bold text-2xl">
 					Instagram Clone
 				</a>
-
-				{user ? (
-					<div className="app_loginContainer">
-						<button
-							className="btn "
-							onClick={() => history.push(`/profile/${user.uid}`)}
-						>
-							Profile
-						</button>
-						<button className="btn btn--red" onClick={() => auth.signOut()}>
-							Logout
-						</button>
-					</div>
-				) : (
-					<div className="app_loginContainer">
-						<button className="btn" onClick={() => setOpenSignIn(true)}>
-							Sign In
-						</button>
-						<button className="btn" onClick={() => setOpen(true)}>
-							Sign Up
-						</button>
-					</div>
-				)}
+				<div>
+					{user ? (
+						<div className="app_loginContainer">
+							<button
+								className="btn "
+								onClick={() => history.push(`/profile/${user.uid}`)}
+							>
+								Profile
+							</button>
+							<button className="btn btn--red" onClick={() => auth.signOut()}>
+								Logout
+							</button>
+						</div>
+					) : (
+						<div className="app_loginContainer">
+							<button className="btn" onClick={() => setOpenSignIn(true)}>
+								Sign In
+							</button>
+							<button className="btn" onClick={() => setOpen(true)}>
+								Sign Up
+							</button>
+						</div>
+					)}
+				</div>
 			</header>
 		</div>
 	);

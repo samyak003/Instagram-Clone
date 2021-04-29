@@ -62,7 +62,6 @@ function Home() {
 						key={id}
 						postId={id}
 						uid={uid}
-						user={user}
 						username={username}
 						imageUrl={imageUrl}
 						caption={caption}
@@ -82,7 +81,7 @@ function Home() {
 					uid={user.uid}
 				></ImageUpload>
 			) : (
-				<h3 className="py-4 px-3 font-medium text-xl">
+				<h3 className="py-4 px-3 font-medium text-xl dark:text-white">
 					<center>
 						Welcome to Instagram Clone. Start using this app by creating an
 						account.

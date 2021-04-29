@@ -2,8 +2,36 @@ import React, { useState } from "react";
 import { db, storage } from "../firebase";
 import firebase from "firebase";
 import { Modal } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+function getModalStyle() {
+	const top = 50;
+	const left = 50;
+
+	return {
+		top: `${top}%`,
+		left: `${left}%`,
+		transform: `translate(-${top}%, -${left}%)`,
+	};
+}
+
+const useStyles = makeStyles((theme) => ({
+	paper: {
+		position: "absolute",
+		width: "70vw",
+		maxWidth: "700px",
+		backgroundColor: theme.palette.background.paper,
+		border: "2px solid #000",
+		borderRadius: "10px",
+		boxShadow: theme.shadows[5],
+		padding: theme.spacing(2, 4, 3),
+	},
+}));
 
 function ImageUpload({ open, onClose, username, uid, setOpen }) {
+	const classes = useStyles();
+	const [modalStyle] = useState(getModalStyle);
+
 	const [caption, setCaption] = useState("");
 	const [image, setImage] = useState(0);
 	const [progress, setProgress] = useState("");
@@ -48,14 +76,24 @@ function ImageUpload({ open, onClose, username, uid, setOpen }) {
 	};
 	return (
 		<Modal open={open} onClose={onClose}>
-			<div className="m-48 bg-gray-200 flex flex-col w-2/4 right-0 mx-auto p-4 rounded">
+			<div
+				className={
+					classes.paper +
+					" bg-gray-200 flex flex-col rounded dark:bg-black dark:border dark:border-gray-200 text-white"
+				}
+				style={modalStyle}
+			>
 				<button onClick={() => setOpen(false)} className="focus:outline-none">
 					X
 				</button>
-				<progress className="w-full my-4" value={progress} max="100"></progress>
+				<progress
+					className="w-full my-4 rounded"
+					value={progress}
+					max="100"
+				></progress>
 				<input
 					type="text"
-					className="border-2 focus:outline-none focus:ring focus:border-blue-400 rounded my-4"
+					className="input"
 					placeholder="Enter a caption..."
 					value={caption}
 					onChange={(event) => setCaption(event.target.value)}
@@ -64,6 +102,7 @@ function ImageUpload({ open, onClose, username, uid, setOpen }) {
 					key={inputKey}
 					disabled={disable}
 					type="file"
+					className="input"
 					onChange={handleChange}
 					accept="image/*"
 				></input>

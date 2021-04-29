@@ -4,8 +4,10 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { db } from "../firebase";
 import firebase from "firebase";
 import { useHistory } from "react-router";
+import { useStateValue } from "../StateProvider";
 
-function Post({ postId, user, uid, username, caption, imageUrl, profilePic }) {
+function Post({ postId, uid, username, caption, imageUrl, profilePic }) {
+	const [{ user }] = useStateValue();
 	const history = useHistory();
 	const [comments, setComments] = useState([]);
 	const [comment, setComment] = useState("");
@@ -59,7 +61,7 @@ function Post({ postId, user, uid, username, caption, imageUrl, profilePic }) {
 	};
 	return (
 		<>
-			<div className="bg-white max-w-lg w-full border mb-14">
+			<div className="bg-white max-w-lg w-full border dark:border-gray-400 mb-14 dark:bg-black text-white rounded">
 				<div className="flex items-center justify-between p-4">
 					<div
 						onClick={() => history.push(`/profile/${uid}`)}
@@ -76,7 +78,7 @@ function Post({ postId, user, uid, username, caption, imageUrl, profilePic }) {
 					)}
 				</div>
 				<img
-					className="w-full object-contain border-t-2 border-b-2"
+					className="w-full object-contain border-t-2 border-b-2 dark:border-gray-400 "
 					alt="Post"
 					src={imageUrl}
 				></img>
@@ -125,14 +127,14 @@ function Post({ postId, user, uid, username, caption, imageUrl, profilePic }) {
 				{user ? (
 					<form className="flex m-t-2">
 						<input
-							className="flex-1  p-4 border-t-2 outline-none"
+							className="flex-1 dark:bg-black  p-4 border-t-2 dark:border-gray-400 outline-none"
 							type="text"
 							placeholder="Add a comment..."
 							value={comment}
 							onChange={(e) => setComment(e.target.value)}
 						></input>
 						<button
-							className="flex-0 border-t-2 cursor-pointer py-2 px-1 text-black-50"
+							className="flex-0 focus:underline focus:outline-none border-t-2 dark:border-gray-400 cursor-pointer py-2 px-1 text-black-50"
 							onClick={postComment}
 						>
 							Post

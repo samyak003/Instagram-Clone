@@ -12,5 +12,5 @@
 	@apply border-gray-500 text-gray-500 focus:border-gray-400 focus:ring-gray-300 hover:bg-gray-500;
 }
 .input {
-	@apply border-2 focus:outline-none focus:ring focus:border-blue-400 rounded my-2 p-2 tracking-wider;
+	@apply border-2 focus:outline-none focus:ring focus:border-blue-400 rounded my-2 p-2 tracking-wider dark:placeholder-white dark:bg-black;
 }

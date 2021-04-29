@@ -60,7 +60,7 @@ function Profile() {
 		}
 	};
 	return (
-		<section className="max-w-screen-lg	w-full mx-auto  p-4">
+		<section className="max-w-screen-lg	w-full mx-auto dark:text-white p-4">
 			<main className="flex flex-col sm:flex-row justify-evenly mx-auto items-center w-10/12">
 				<div className="w-24 md:w-28 lg:w-36 ">
 					<img
@@ -74,7 +74,7 @@ function Profile() {
 						<h2 className="text-2xl font-medium">{profileDetails?.username}</h2>
 						{user?.uid === uid && (
 							<button
-								className="btn btn--secondary"
+								className="btn btn--secondary dark:border-gray-300 dark:text-gray-300 dark:hover:bg-gray-300"
 								onClick={() => history.push("/editProfile")}
 							>
 								Edit Profile
@@ -112,11 +112,15 @@ function Profile() {
 				</center>
 				<div className="grid grid-cols-3 place-items-center gap-1 md:gap-4">
 					{posts.map((post, index) => (
-						<div key={index} className="aspect-w-1 aspect-h-1 w-full">
+						<div
+							key={index}
+							onClick={() => history.push(`/post/${uid}/${post.id}`)}
+							className="aspect-w-1 aspect-h-1 w-full cursor-pointer"
+						>
 							<img
 								src={post.data.imageUrl}
 								alt="post"
-								className=" w-full object-contain bg-gray-200"
+								className=" w-full object-contain bg-gray-200 dark:bg-gray-800"
 							/>
 						</div>
 					))}
