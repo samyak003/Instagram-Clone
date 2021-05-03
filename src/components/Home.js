@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-
-import ImageUpload from "./ImageUpload";
 import Post from "./Post";
 import { db } from "../firebase";
 import { useStateValue } from "../StateProvider";
 
 function Home() {
 	const [{ user }] = useStateValue();
-	const [open, setOpen] = useState(false);
 
 	const [posts, setPosts] = useState([]);
 	useEffect(() => {
@@ -49,6 +46,8 @@ function Home() {
 								});
 						}
 					});
+			} else {
+				setPosts([]);
 			}
 		};
 		return getPosts();
@@ -69,18 +68,7 @@ function Home() {
 					></Post>
 				))}
 			</div>
-
-			{user?.displayName ? (
-				<ImageUpload
-					open={open}
-					onClose={() => {
-						setOpen(false);
-					}}
-					username={user.displayName}
-					setOpen={setOpen}
-					uid={user.uid}
-				></ImageUpload>
-			) : (
+			{!user?.displayName && (
 				<h3 className="py-4 px-3 font-medium text-xl dark:text-white">
 					<center>
 						Welcome to Instagram Clone. Start using this app by creating an
@@ -88,13 +76,6 @@ function Home() {
 					</center>
 				</h3>
 			)}
-			<button
-				className="fixed p-4 bottom-4 right-4 focus:outline-none rounded-full flex items-center justify-center bg-blue-500 scale-100 text-white hover:bg-blue-800 transition-all"
-				onClick={() => setOpen(true)}
-				disabled={!user}
-			>
-				Add
-			</button>
 		</div>
 	);
 }

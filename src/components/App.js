@@ -5,6 +5,8 @@ import EditProfile from "./EditProfile";
 import { auth } from "../firebase";
 import Profile from "./Profile";
 import PostPage from "./PostPage";
+import Login from "./Login";
+import BottomNav from "./BottomNav";
 
 const Header = lazy(() => import("./Header"));
 const Home = lazy(() => import("./Home"));
@@ -32,21 +34,11 @@ function App() {
 	}, [user, dispatch]);
 
 	useEffect(() => {
-		if (
-			localStorage.theme === "dark" ||
-			(!("theme" in localStorage) &&
-				window.matchMedia("(prefers-color-scheme: dark)").matches)
-		) {
+		if (localStorage.theme === "dark" || !("theme" in localStorage)) {
 			document.documentElement.classList.add("dark");
 		} else {
 			document.documentElement.classList.remove("dark");
 		}
-		localStorage.theme = "light";
-
-		// Whenever the user explicitly chooses dark mode
-		localStorage.theme = "dark";
-
-		// Whenever the user explicitly chooses to respect the OS preference
 		document.querySelector("body").classList.add("bg-gray-50");
 		document.querySelector("body").classList.add("dark:bg-black");
 	}, []);
@@ -63,6 +55,9 @@ function App() {
 						<Route path="/profile/:uid">
 							<Profile />
 						</Route>
+						<Route path="/login">
+							<Login />
+						</Route>
 						<Route path="/editProfile">
 							<EditProfile />
 						</Route>
@@ -70,6 +65,7 @@ function App() {
 							<Home />
 						</Route>
 					</Switch>
+					{user && <BottomNav />}
 				</Suspense>
 			</Router>
 		</div>

@@ -1,8 +1,5 @@
 export const initialState = {
-	dark:
-		JSON.parse(localStorage.getItem("dark")) === undefined
-			? false
-			: JSON.parse(localStorage.getItem("dark")),
+	theme: localStorage.theme,
 	user: null,
 };
 
@@ -14,10 +11,19 @@ const reducer = (state, action) => {
 				user: action.user,
 			};
 		case "SETDARKMODE":
-			localStorage.setItem("dark", JSON.parse(action.dark));
+			let _theme;
+			if (state.theme === "dark") {
+				_theme = "light";
+				document.documentElement.classList.remove("dark");
+			} else {
+				_theme = "dark";
+				document.documentElement.classList.add("dark");
+			}
+			localStorage.theme = _theme;
+
 			return {
 				...state,
-				dark: action.dark,
+				theme: _theme,
 			};
 		default:
 			return state;
