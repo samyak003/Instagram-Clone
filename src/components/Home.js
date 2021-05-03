@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Post from "./Post";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { db } from "../firebase";
 import { useStateValue } from "../StateProvider";
 
+const Post = lazy(() => import("./Post"));
 function Home() {
 	const [{ user }] = useStateValue();
 
@@ -57,15 +57,17 @@ function Home() {
 		<div className="Home">
 			<div className="flex justify-center items-center p-5 flex-col">
 				{posts.map(({ id, username, imageUrl, caption, uid, profilePic }) => (
-					<Post
-						key={id}
-						postId={id}
-						uid={uid}
-						username={username}
-						imageUrl={imageUrl}
-						caption={caption}
-						profilePic={profilePic}
-					></Post>
+					<Suspense fallback={<div>Loading...</div>}>
+						<Post
+							key={id}
+							postId={id}
+							uid={uid}
+							username={username}
+							imageUrl={imageUrl}
+							caption={caption}
+							profilePic={profilePic}
+						></Post>
+					</Suspense>
 				))}
 			</div>
 			{!user?.displayName && (

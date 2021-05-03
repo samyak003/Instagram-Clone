@@ -51,7 +51,7 @@ function Login() {
 	};
 
 	return (
-		<div className=" dark:bg-black dark:border dark:border-gray-200 text-white">
+		<div className=" dark:bg-black dark:border dark:border-gray-200 dark:text-white">
 			{page === "login" ? (
 				<form className="flex flex-col w-full p-5 m-auto max-w-md	">
 					<input

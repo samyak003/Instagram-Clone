@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { useParams } from "react-router";
 import { db } from "../firebase";
-import Post from "./Post";
+const Post = lazy(() => import("./Post"));
 
 function PostPage() {
 	const [post, setPost] = useState({});
@@ -29,14 +29,16 @@ function PostPage() {
 	}, [uid, postId]);
 	return (
 		<div className="grid place-items-center mt-4">
-			<Post
-				postId={postId}
-				uid={uid}
-				username={profile.username}
-				caption={post.caption}
-				imageUrl={post.imageUrl}
-				profilePic={profile.imgUrl}
-			/>
+			<Suspense fallback={<div>Loading...</div>}>
+				<Post
+					postId={postId}
+					uid={uid}
+					username={profile.username}
+					caption={post.caption}
+					imageUrl={post.imageUrl}
+					profilePic={profile.imgUrl}
+				/>
+			</Suspense>
 		</div>
 	);
 }

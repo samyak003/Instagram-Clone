@@ -79,7 +79,7 @@ function ImageUpload({ open, onClose, username, uid, setOpen }) {
 			<div
 				className={
 					classes.paper +
-					" bg-gray-200 flex flex-col rounded dark:bg-black dark:border dark:border-gray-200 text-white"
+					" bg-gray-200 flex flex-col rounded dark:bg-black dark:border dark:border-gray-200 dark:text-white"
 				}
 				style={modalStyle}
 			>

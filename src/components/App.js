@@ -1,13 +1,13 @@
 import React, { useEffect, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useStateValue } from "../StateProvider";
-import EditProfile from "./EditProfile";
 import { auth } from "../firebase";
-import Profile from "./Profile";
-import PostPage from "./PostPage";
-import Login from "./Login";
-import BottomNav from "./BottomNav";
 
+const EditProfile = lazy(() => import("./EditProfile"));
+const Profile = lazy(() => import("./Profile"));
+const PostPage = lazy(() => import("./PostPage"));
+const Login = lazy(() => import("./Login"));
+const BottomNav = lazy(() => import("./BottomNav"));
 const Header = lazy(() => import("./Header"));
 const Home = lazy(() => import("./Home"));
 
@@ -55,9 +55,11 @@ function App() {
 						<Route path="/profile/:uid">
 							<Profile />
 						</Route>
-						<Route path="/login">
-							<Login />
-						</Route>
+						{!user && (
+							<Route path="/login">
+								<Login />
+							</Route>
+						)}
 						<Route path="/editProfile">
 							<EditProfile />
 						</Route>

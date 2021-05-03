@@ -73,7 +73,7 @@ function EditProfile() {
 				});
 		}
 	};
-	if (userDetails) {
+	if (user && userDetails) {
 		return (
 			<div className="flex flex-col items-center my-5 p-10 dark:text-white">
 				{/* profile pic */}
