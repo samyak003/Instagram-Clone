@@ -87,10 +87,10 @@ function Profile() {
 							<strong>{posts.length}</strong> Posts
 						</p>
 						<p>
-							<strong>{profileDetails?.following?.length - 1}</strong> Followers
+							<strong>{profileDetails?.followers?.length}</strong> Followers
 						</p>
 						<p>
-							<strong>{profileDetails?.followers?.length}</strong> Following
+							<strong>{profileDetails?.following?.length - 1}</strong> Following
 						</p>
 					</div>
 					<p>{profileDetails?.bio}</p>

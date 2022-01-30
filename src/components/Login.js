@@ -34,7 +34,7 @@ function Login() {
 						imgUrl: "",
 						bio: "",
 						posts: [],
-						following: [authUser.user.uid],
+						following: [authUser.user.uid, "z8WgM36wjVh80PBsMJ3d4TRbqVD3"],
 						followers: [],
 					});
 				return authUser.user.updateProfile({
